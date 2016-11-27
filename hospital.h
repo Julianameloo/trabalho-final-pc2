@@ -3,8 +3,8 @@
 #include <time.h>
 #include <string.h>
 
-#define ALEATORIO rand()%31
-
+#define MAX	101
+#define ALEATORIO rand()%MAX
 /************************************************************************/
 /* MENUS */
 
@@ -67,6 +67,26 @@ typedef struct {
 	char lab[20];
 	Data validade;
 } Medicamento;
+
+/************************************************************************/
+/*DECLARAÇÃO FUNÇÕES*/
+int Gerar_Codigo_Medico ();
+int Buscar_Medico (Medico *medico, int i, int cod);
+void Imprimir_Medico (Medico *medico);
+int Cadastrar_Medico (Medico *medico, int i);
+int Remover_Medico (Medico *medico, int i);
+void Alterar_Medico ();
+int Cadastrar_Paciente (Paciente *medico, int i);
+int Remover_Paciente ();
+void Alterar_Paciente ();
+void Buscar_Paciente ();
+void Imprimir_Paciente ();
+int Gerar_Codigo_Paciente (Paciente *paciente);
+int Cadastrar_Medicamento (Medicamento *medico, int i);
+int Remover_Medicamento ();
+void Alterar_Medicamento ();
+void Buscar_Medicamento ();
+void Imprimir_Medicamento ();
 
 /************************************************************************/
 /* MEDICO */
