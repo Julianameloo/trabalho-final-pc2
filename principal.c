@@ -5,7 +5,9 @@ int main () {
 	Medico *medicos;
 	Paciente *pacientes;
 	Medicamento *medicamentos;
-	
+	Criar_Lista_Vazia_pac(&L);
+	Carregar_Arquivo_Pac (X);
+	Ponteiro_pac P;
 	med = mdc = pac = 0;
 	
 	op = Menu_Principal();
@@ -13,7 +15,9 @@ int main () {
 	do{
 		switch(op){
 			case 1:
-				op2 = Menu_Comum("Registro Paciente");
+				system ("clear");
+				Menu_pac();
+				scanf ("%d", &op2);
 				break;
 		
 			case 2:
@@ -34,8 +38,9 @@ int main () {
 		switch(op2){
 			case 1:
 				if(op == 1){
-					
-					pac = Cadastrar_Paciente(pacientes+pac, pac);
+					Ler_pac(&X);
+					Insere_Elemento_Lista_pac(&L,X);
+					Gravar_Arquivo_Pac (P);
 				}
 				else if(op == 2){
 					if(med == 0)
@@ -57,7 +62,13 @@ int main () {
 				break;
 		
 			case 2:
-				if(op == 1) pac = Remover_Paciente();
+				if(op == 1) {
+					Exibir_Lista_pac(L);
+					printf("Entre com o código do cadastro que deseja remover: \n");
+					scanf("%d",&X.cod);
+					Remove_Elemento_Lista_pac(&L,&X);
+					Gravar_Arquivo_Pac (P);
+				}
 				else if(op == 2) med = Remover_Medico(medicos, med);
 				else if(op == 3) mdc = Remover_Medicamento();
 				printf("\n|5| Menu Anterior\n|6| Sair\n\nDigite a opção desejada: ");
@@ -65,7 +76,11 @@ int main () {
 				break;
 		
 			case 3:
-				if(op == 1) Buscar_Paciente();
+				if(op == 1) {
+					printf("Entre com o código do cadastro que deseja acessar: \n");
+					scanf("%d",&cod);
+					Consulta_Elemento_pac(L,cod);
+				}
 				else if(op == 2) {
 					printf("Insira o código referente ao médico: ");
 					scanf("%d", &cod);
@@ -77,8 +92,8 @@ int main () {
 				break;
 				
 			case 4:
-				if(op == 1) Alterar_Medico();
-				else if(op == 2) Alterar_Paciente();
+				if(op == 1) return 0;
+				else if(op == 2) Alterar_Medico();
 				else if(op == 3) Alterar_Medicamento();
 				break;
 		
@@ -87,7 +102,9 @@ int main () {
 				break;
 				
 			case 6:
-				if(op == 1) Imprimir_Paciente();
+				if(op == 1) {
+					Exibir_Lista_pac(L);
+				}
 				else if(op == 2){
 					for(i=0; i<med; i++){
 						Imprimir_Medico(medicos+i);
